@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import {toast} from 'react-toastify';
 import './ListFood.css';
 import { getFoodList , deleteFoodById } from '../../services/foodService';
+import SkeletonLoader from '../Skeleton loader/SkeletonLoader';
 
 const ListFood = () => {
   const [list,setList] = useState([]);
@@ -29,7 +29,9 @@ const ListFood = () => {
     fetchList();
   },[])
   return (
-    <div className="py-5 row justify-content-center">
+    {
+      list.length === 0 ? <SkeletonLoader /> : 
+      <div className="py-5 row justify-content-center">
       <div className="col-11 py-3 card">
         <table>
           <thead className='fs-6'>
@@ -62,6 +64,7 @@ const ListFood = () => {
         </table>
       </div>
     </div>
+    }
   )
 }
 
