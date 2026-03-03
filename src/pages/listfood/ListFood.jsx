@@ -29,9 +29,7 @@ const ListFood = () => {
     fetchList();
   },[])
   return (
-    {
-      list.length === 0 ? <SkeletonLoader /> : 
-      <div className="py-5 row justify-content-center">
+    <div className="py-5 row justify-content-center">
       <div className="col-11 py-3 card">
         <table>
           <thead className='fs-6'>
@@ -43,28 +41,32 @@ const ListFood = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>{
-            list.map((item,index)=>{
-              return(
-              <tr key={index}>
-                <td>
-                  <img src={item.imageUrl} alt="Food-image" width={48} height={48} />
-                </td>
-                <td>{item.name}</td>
-                <td>{item.category}</td>
-                <td>₹{item.price}.00</td>
-                <td className='ps-3'>
-                  <i className='bi bi-x-circle-fill text-danger fs-3' onClick={() => deleteFood(item.id)}></i>
-                </td>
-              </tr>
-              );
-            })
-          }          
-          </tbody>
+          {
+            list.length === 0 ? (<SkeletonLoader rows={5} />) :
+             (  <tbody>{
+                      list.map((item,index)=>{
+                        return(
+                        <tr key={index}>
+                          <td>
+                            <img src={item.imageUrl} alt="Food-image" width={48} height={48} />
+                          </td>
+                          <td>{item.name}</td>
+                          <td>{item.category}</td>
+                          <td>₹{item.price}.00</td>
+                          <td className='ps-3'>
+                            <i className='bi bi-x-circle-fill text-danger fs-3' onClick={() => deleteFood(item.id)}></i>
+                          </td>
+                        </tr>
+                        );
+                      })
+                    }          
+                </tbody>
+              )
+          }
+          
         </table>
       </div>
     </div>
-    }
   )
 }
 
