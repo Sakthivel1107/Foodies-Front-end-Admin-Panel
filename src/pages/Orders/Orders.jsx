@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { assets } from '../../assets/assets';
 import "./Orders.css";
+import OrdersSkeleton from '../../OrdersSkeleton/OrdersSkeleton';
 
 const Orders = () => {
     const [data,setData] = useState([]);
@@ -18,55 +19,11 @@ const Orders = () => {
     useEffect(()=>{
       fetchOrders();
     },[]);
-//   return (
-//     <div className="container">
-//         <div className="py-5 row justify-content-center">
-//             <table className="table table-response">
-//                 <tbody>
-//                     {
-//                         data &&
-//                         data.map((order,index)=>{
-//                             return (
-//                                 <tr key={index}>
-//                                     <td>
-//                                         <img src={assets.parcel} alt="" height={42} width={42} />
-//                                     </td>
-//                                     <td>
-//                                         <div>
-//                                             {
-//                                                 order.orderedItems.map((item,index) => {
-//                                                     if(index === order.orderedItems.length-1){
-//                                                         return item.name + " x" +item.quantity;
-//                                                     }
-//                                                     else{
-//                                                         return item.name + " x" +item.quantity +" , ";
-//                                                     }
-//                                                 })
-//                                             }
-//                                         </div>
-//                                         <div>
-//                                             {order.userAddress}
-//                                         </div>
-//                                     </td>
-//                                     <td>&#x20B9;{order.amount.toFixed(2)}</td>
-//                                     <td>Items: {order.orderedItems.length}</td>
-//                                     <td>
-//                                         <select className="form-control" onChange={(event)=>updateStatus(event,order.id)} value={order.orderStatus}>
-//                                             <option value="Preparing">Preparing</option>
-//                                             <option value="Out for delivery">Out for delivery</option>
-//                                             <option value="Delivered">Delivered</option>
-//                                         </select>
-//                                     </td>
-//                                 </tr>
-//                             )
-//                         })
-//                     }
-//                 </tbody>
-//             </table>
-//         </div>
-//     </div>
-//   )
+
 return (
+  {
+    data.length === 0 ? (<OrdersSkeleton />) :
+  (
   <div className="container py-5">
 
     {/* ================= MOBILE VIEW (Cards) ================= */}
@@ -175,6 +132,8 @@ return (
     </div>
 
   </div>
+  )
+  }
 );
 
 }
