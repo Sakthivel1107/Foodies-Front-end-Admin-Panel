@@ -21,12 +21,14 @@ const Orders = () => {
     },[]);
 
 return (
-  {
-    data.length === 0 ? (<OrdersSkeleton />) :
-  (
+  
+
   <div className="container py-5">
 
     {/* ================= MOBILE VIEW (Cards) ================= */}
+    {
+      data.length === 0 ?  <OrdersSkeleton />:
+      <>
     <div className="d-md-none">
       {data &&
         data.map((order, index) => (
@@ -130,10 +132,10 @@ return (
         </tbody>
       </table>
     </div>
-
+    </>
+    }
+    
   </div>
-  )
-  }
 );
 
 }
