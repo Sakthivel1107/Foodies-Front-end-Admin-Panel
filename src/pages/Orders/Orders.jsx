@@ -27,7 +27,7 @@ return (
 
     {/* ================= MOBILE VIEW (Cards) ================= */}
     {
-      data.length === 0 ?  <OrdersSkeleton />:
+      data.length === 0 ?  <OrdersSkeleton rows={8} />:
       <>
     <div className="d-md-none">
       {data &&

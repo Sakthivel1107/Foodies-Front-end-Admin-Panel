@@ -42,7 +42,7 @@ const ListFood = () => {
             </tr>
           </thead>
           {
-            list.length === 0 ? (<SkeletonLoader rows={5} />) :
+            list.length === 0 ? (<SkeletonLoader rows={7} />) :
              (  <tbody>{
                       list.map((item,index)=>{
                         return(
